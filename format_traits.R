@@ -49,10 +49,6 @@ elton <- rbind(elton, elton2)
   
 species[!species %in% elton$Scientific]
 
-### coreys data ###
-
-# flock size??
-
 ### join ####
 
 myElton <- subset(elton, Scientific %in% species) %>%
@@ -63,7 +59,7 @@ myElton <- subset(elton, Scientific %in% species) %>%
 
 
 
-#### habitat data #####
+#### Storchova habitat data #####
 tdir <- "~/Dropbox/DOF/traits/Storchova/doi_10.5061_dryad.n6k3n__v1"
 habitat <- read.delim(paste(tdir,"Life-history characteristics of European birds.txt",sep="/"),
                       as.is=T)
