@@ -29,3 +29,5 @@ vignettes/*.pdf
 old/*
 outputs/*
 gadm36_DNK_0_sp.rds
+environ-data/*
+data/TTT/*
