@@ -1,0 +1,123 @@
+"Species"	"Family1"	"Order1"	"Sequence"	"Avibase.ID1"	"Mass"	"Habitat"	"Habitat.Density"	"Migration"	"Trophic.Level"	"Trophic.Niche"	"Primary.Lifestyle"	"Range.Size"	"Centroid.Latitude"
+"Accipiter gentilis"	"Accipitridae"	"Accipitriformes"	3128	"AVIBASE-420850D6"	866	"Forest"	1	2	"Carnivore"	"Vertivore"	"Generalist"	31775270.74	54.91
+"Accipiter nisus"	"Accipitridae"	"Accipitriformes"	3120	"AVIBASE-DB376A66"	220.8	"Forest"	1	2	"Carnivore"	"Vertivore"	"Insessorial"	23601609.31	54.67
+"Buteo buteo"	"Accipitridae"	"Accipitriformes"	3203	"AVIBASE-3C0C325D"	759.1	"Grassland"	3	2	"Carnivore"	"Vertivore"	"Insessorial"	11719424.27	52.89
+"Circus aeruginosus"	"Accipitridae"	"Accipitriformes"	3068	"AVIBASE-E2A19474"	704.1	"Wetland"	3	2	"Carnivore"	"Vertivore"	"Aerial"	13390803.81	50.03
+"Alopochen aegyptiaca"	"Anatidae"	"Anseriformes"	450	"AVIBASE-DA2F24E3"	1873	"Wetland"	3	2	"Herbivore"	"Omnivore"	"Generalist"	17452607.3	-2.2
+"Anas platyrhynchos"	"Anatidae"	"Anseriformes"	525	"AVIBASE-85625D75"	843.4	"Wetland"	3	2	"Herbivore"	"Herbivore aquatic"	"Aquatic"	39707247.47	51.63
+"Anser anser"	"Anatidae"	"Anseriformes"	414	"AVIBASE-4AED44E8"	3302.4	"Wetland"	3	3	"Herbivore"	"Herbivore terrestrial"	"Terrestrial"	13285537.12	51.74
+"Aythya ferina"	"Anatidae"	"Anseriformes"	480	"AVIBASE-A96692E0"	823	"Wetland"	3	1	"Herbivore"	"Herbivore aquatic"	"Aquatic"	16611109.18	53.5
+"Aythya fuligula"	"Anatidae"	"Anseriformes"	489	"AVIBASE-67CEA1C1"	701.2	"Wetland"	3	2	"Omnivore"	"Herbivore aquatic"	"Aquatic"	20377977.97	57.84
+"Branta canadensis"	"Anatidae"	"Anseriformes"	408	"AVIBASE-B59E1863"	2811.7	"Grassland"	3	3	"Herbivore"	"Herbivore terrestrial"	"Terrestrial"	12236810.45	53.3
+"Cygnus olor"	"Anatidae"	"Anseriformes"	400	"AVIBASE-694C127A"	10682	"Wetland"	3	3	"Herbivore"	"Herbivore aquatic"	"Aquatic"	4915289.2	49.96
+"Mareca strepera"	"Anatidae"	"Anseriformes"	513	"AVIBASE-C235A4D7"	915.6	"Wetland"	3	2	"Herbivore"	"Herbivore aquatic"	"Aquatic"	18552362.65	49.62
+"Mergus serrator"	"Anatidae"	"Anseriformes"	438	"AVIBASE-8DB64266"	1015.2	"Wetland"	3	3	"Carnivore"	"Aquatic predator"	"Aquatic"	23632905.44	60.86
+"Somateria mollissima"	"Anatidae"	"Anseriformes"	423	"AVIBASE-B77377EE"	2060.9	"Marine"	3	2	"Carnivore"	"Aquatic predator"	"Aquatic"	3321100.72	64.94
+"Spatula clypeata"	"Anatidae"	"Anseriformes"	508	"AVIBASE-ED4CE8E7"	612.6	"Wetland"	3	3	"Omnivore"	"Aquatic predator"	"Aquatic"	27068888.24	55.88
+"Spatula querquedula"	"Anatidae"	"Anseriformes"	501	"AVIBASE-F577BA0F"	325.6	"Wetland"	3	3	"Omnivore"	"Herbivore aquatic"	"Aquatic"	16861397.11	53.56
+"Tadorna tadorna"	"Anatidae"	"Anseriformes"	453	"AVIBASE-5EAB32D3"	1146.8	"Coastal"	3	2	"Carnivore"	"Aquatic predator"	"Generalist"	9435093.57	48.41
+"Apus apus"	"Apodidae"	"Caprimulgiformes"	1201	"AVIBASE-4E6EF3F9"	37.6	"Human Modified"	1	3	"Carnivore"	"Invertivore"	"Aerial"	24779919.71	48.52
+"Charadrius hiaticula"	"Charadriidae"	"Charadriiformes"	2368	"AVIBASE-EDA37B7C"	64	"Coastal"	3	2	"Carnivore"	"Aquatic predator"	"Terrestrial"	4520829.19	69.82
+"Vanellus vanellus"	"Charadriidae"	"Charadriiformes"	2403	"AVIBASE-F029489A"	218.4	"Wetland"	3	2	"Carnivore"	"Omnivore"	"Terrestrial"	18594755.95	52.6
+"Haematopus ostralegus"	"Haematopodidae"	"Charadriiformes"	2345	"AVIBASE-ED663165"	526	"Coastal"	3	1	"Carnivore"	"Aquatic predator"	"Terrestrial"	9505624.97	52.94
+"Larus argentatus"	"Laridae"	"Charadriiformes"	2629	"AVIBASE-F002188E"	1091	"Coastal"	3	2	"Carnivore"	"Aquatic predator"	"Generalist"	1540126.95	62.73
+"Larus canus"	"Laridae"	"Charadriiformes"	2623	"AVIBASE-0C290EA6"	412.5	"Coastal"	3	3	"Carnivore"	"Omnivore"	"Terrestrial"	17992527.98	60.59
+"Larus fuscus"	"Laridae"	"Charadriiformes"	2628	"AVIBASE-2D52E3A5"	762.4	"Coastal"	3	2	"Carnivore"	"Aquatic predator"	"Generalist"	4200335.24	66.29
+"Larus marinus"	"Laridae"	"Charadriiformes"	2638	"AVIBASE-E826E9F3"	1649.7	"Coastal"	3	2	"Omnivore"	"Omnivore"	"Terrestrial"	1075355.21	60.23
+"Chroicocephalus ridibundus"	"Laridae"	"Charadriiformes"	2599	"AVIBASE-FB02DD96"	284	"Wetland"	3	2	"Carnivore"	"Aquatic predator"	"Generalist"	17767358.5	55.04
+"Gallinago gallinago"	"Scolopacidae"	"Charadriiformes"	2516	"AVIBASE-9151E0BA"	112.9	"Wetland"	3	3	"Carnivore"	"Aquatic predator"	"Terrestrial"	20105909.91	59.33
+"Scolopax rusticola"	"Scolopacidae"	"Charadriiformes"	2492	"AVIBASE-BFE14290"	308.3	"Forest"	3	3	"Carnivore"	"Omnivore"	"Terrestrial"	15129244.23	55.2
+"Tringa totanus"	"Scolopacidae"	"Charadriiformes"	2538	"AVIBASE-D6BFC73A"	129	"Wetland"	3	3	"Carnivore"	"Aquatic predator"	"Terrestrial"	19709237.23	46.76
+"Columba livia"	"Columbidae"	"Columbiformes"	586	"AVIBASE-BBA263C2"	354.2	"Human Modified"	3	1	"Herbivore"	"Granivore"	"Terrestrial"	17464191.46	33.52
+"Columba oenas"	"Columbidae"	"Columbiformes"	591	"AVIBASE-68E4C0D1"	290.8	"Woodland"	3	1	"Herbivore"	"Omnivore"	"Terrestrial"	9272521.23	50.84
+"Columba palumbus"	"Columbidae"	"Columbiformes"	594	"AVIBASE-760F307A"	490	"Woodland"	2	1	"Herbivore"	"Omnivore"	"Terrestrial"	11947217.36	50.34
+"Streptopelia decaocto"	"Columbidae"	"Columbiformes"	628	"AVIBASE-0C1EFC9B"	149	"Human Modified"	3	1	"Herbivore"	"Omnivore"	"Terrestrial"	19265912.02	40.2
+"Cuculus canorus"	"Cuculidae"	"Cuculiformes"	1717	"AVIBASE-B3D2C3C5"	111.4	"Forest"	2	3	"Carnivore"	"Invertivore"	"Insessorial"	37338142.79	49.44
+"Falco tinnunculus"	"Falconidae"	"Falconiformes"	4038	"AVIBASE-D99158DF"	183.2	"Shrubland"	3	3	"Carnivore"	"Vertivore"	"Aerial"	49037026.09	36.82
+"Coturnix coturnix"	"Phasianidae"	"Galliformes"	230	"AVIBASE-CAFE345D"	96.3	"Human Modified"	3	3	"Herbivore"	"Granivore"	"Terrestrial"	21283218.76	44.69
+"Perdix perdix"	"Phasianidae"	"Galliformes"	347	"AVIBASE-C013A20E"	405.3	"Grassland"	3	1	"Herbivore"	"Omnivore"	"Terrestrial"	10032916.79	52.09
+"Phasianus colchicus"	"Phasianidae"	"Galliformes"	329	"AVIBASE-2FA39DCD"	1120.3	"Human Modified"	2	1	"Herbivore"	"Omnivore"	"Terrestrial"	7426719.32	38.76
+"Fulica atra"	"Rallidae"	"Gruiformes"	1885	"AVIBASE-B682B2A9"	717.1	"Wetland"	3	1	"Herbivore"	"Herbivore aquatic"	"Generalist"	33490842.86	36.45
+"Gallinula chloropus"	"Rallidae"	"Gruiformes"	1875	"AVIBASE-8F82FF8C"	339.6	"Wetland"	3	1	"Omnivore"	"Omnivore"	"Terrestrial"	38515141.7	27.57
+"Rallus aquaticus"	"Rallidae"	"Gruiformes"	1776	"AVIBASE-DE1D2DF4"	110.7	"Wetland"	1	2	"Carnivore"	"Aquatic predator"	"Terrestrial"	12363656.67	47.32
+"Acrocephalus palustris"	"Acrocephalidae"	"Passeriformes"	7561	"AVIBASE-B675E006"	11.5	"Shrubland"	3	3	"Carnivore"	"Invertivore"	"Insessorial"	5996672.74	51.96
+"Acrocephalus schoenobaenus"	"Acrocephalidae"	"Passeriformes"	7558	"AVIBASE-FED5AED5"	11.8	"Wetland"	3	3	"Carnivore"	"Invertivore"	"Insessorial"	11967937.01	56.04
+"Acrocephalus scirpaceus"	"Acrocephalidae"	"Passeriformes"	7562	"AVIBASE-3F0EE474"	12.3	"Wetland"	3	3	"Carnivore"	"Invertivore"	"Insessorial"	15112845.4	25.94
+"Hippolais icterina"	"Acrocephalidae"	"Passeriformes"	7553	"AVIBASE-869C978C"	13.2	"Woodland"	1	3	"Carnivore"	"Invertivore"	"Insessorial"	6330920.54	54.61
+"Aegithalos caudatus"	"Aegithalidae"	"Passeriformes"	8050	"AVIBASE-547163C2"	8.6	"Forest"	2	1	"Carnivore"	"Invertivore"	"Insessorial"	18247301.19	52.48
+"Alauda arvensis"	"Alaudidae"	"Passeriformes"	7342	"AVIBASE-ED2AC04E"	37.3	"Grassland"	3	2	"Omnivore"	"Omnivore"	"Terrestrial"	26018285.25	53.41
+"Lullula arborea"	"Alaudidae"	"Passeriformes"	7332	"AVIBASE-742EC2F1"	26.9	"Woodland"	3	2	"Omnivore"	"Omnivore"	"Terrestrial"	7140559.13	47.75
+"Certhia brachydactyla"	"Certhiidae"	"Passeriformes"	8532	"AVIBASE-552E2BA9"	8.2	"Forest"	1	1	"Carnivore"	"Invertivore"	"Insessorial"	3199552.33	44.73
+"Certhia familiaris"	"Certhiidae"	"Passeriformes"	8535	"AVIBASE-73BE9A87"	9	"Forest"	1	1	"Omnivore"	"Invertivore"	"Insessorial"	15914424.48	51.19
+"Corvus corax"	"Corvidae"	"Passeriformes"	6979	"AVIBASE-B9B272F4"	928	"Forest"	3	2	"Omnivore"	"Omnivore"	"Terrestrial"	52288449.5	54.65
+"Corvus corone"	"Corvidae"	"Passeriformes"	6987	"AVIBASE-E4EE9AC4"	570	"Human Modified"	3	1	"Carnivore"	"Omnivore"	"Terrestrial"	33343165.09	52.96
+"Corvus frugilegus"	"Corvidae"	"Passeriformes"	6976	"AVIBASE-1078FFEA"	452.1	"Grassland"	3	1	"Omnivore"	"Omnivore"	"Terrestrial"	19019081.22	50.24
+"Coloeus monedula"	"Corvidae"	"Passeriformes"	6966	"AVIBASE-D4C32F8E"	246	"Human Modified"	3	2	"Omnivore"	"Omnivore"	"Terrestrial"	13975046.48	48.54
+"Garrulus glandarius"	"Corvidae"	"Passeriformes"	6945	"AVIBASE-3B86B35F"	159.5	"Forest"	1	2	"Omnivore"	"Omnivore"	"Insessorial"	19458203.9	51.02
+"Pica pica"	"Corvidae"	"Passeriformes"	6956	"AVIBASE-48CE29C5"	217.5	"Human Modified"	3	1	"Omnivore"	"Omnivore"	"Terrestrial"	31831405.08	48.8
+"Emberiza calandra"	"Emberizidae"	"Passeriformes"	10257	"AVIBASE-9A87EBB0"	48.5	"Grassland"	3	2	"Herbivore"	"Omnivore"	"Terrestrial"	7483952.2	44.09
+"Emberiza citrinella"	"Emberizidae"	"Passeriformes"	10270	"AVIBASE-56FB47C0"	29.7	"Shrubland"	3	2	"Herbivore"	"Granivore"	"Terrestrial"	12899942.03	56.2
+"Emberiza schoeniclus"	"Emberizidae"	"Passeriformes"	10285	"AVIBASE-08E818A7"	18.4	"Wetland"	2	2	"Herbivore"	"Omnivore"	"Terrestrial"	23743379.81	55.24
+"Acanthis flammea/A. cabaret"	"Fringillidae"	"Passeriformes"	10206	"AVIBASE-B6C8DDB2"	13	"Forest"	1	2	"Herbivore"	"Granivore"	"Generalist"	19794267.79	64.52
+"Carduelis carduelis"	"Fringillidae"	"Passeriformes"	10214	"AVIBASE-59353A05"	16	"Woodland"	2	1	"Herbivore"	"Granivore"	"Insessorial"	11860717.87	50.13
+"Chloris chloris"	"Fringillidae"	"Passeriformes"	10159	"AVIBASE-65BD2033"	26	"Woodland"	2	1	"Herbivore"	"Granivore"	"Generalist"	10220595.83	50.67
+"Coccothraustes coccothraustes"	"Fringillidae"	"Passeriformes"	10062	"AVIBASE-84E1F114"	56.6	"Forest"	1	2	"Herbivore"	"Omnivore"	"Insessorial"	12197802.66	51.17
+"Fringilla coelebs"	"Fringillidae"	"Passeriformes"	10018	"AVIBASE-37F52281"	23.8	"Forest"	2	2	"Omnivore"	"Invertivore"	"Generalist"	13931193.45	52.79
+"Linaria cannabina"	"Fringillidae"	"Passeriformes"	10203	"AVIBASE-32635892"	19.5	"Shrubland"	2	1	"Herbivore"	"Granivore"	"Terrestrial"	10715477.38	49.19
+"Loxia curvirostra"	"Fringillidae"	"Passeriformes"	10209	"AVIBASE-DF660782"	38.3	"Forest"	1	2	"Herbivore"	"Granivore"	"Insessorial"	22671334.66	52.38
+"Pyrrhula pyrrhula"	"Fringillidae"	"Passeriformes"	10137	"AVIBASE-24764DC7"	24.3	"Forest"	2	1	"Herbivore"	"Omnivore"	"Insessorial"	17864017.39	56.29
+"Spinus spinus"	"Fringillidae"	"Passeriformes"	10227	"AVIBASE-9820CECA"	13.2	"Forest"	1	1	"Herbivore"	"Granivore"	"Insessorial"	8968022.11	55.86
+"Delichon urbicum"	"Hirundinidae"	"Passeriformes"	7686	"AVIBASE-30FEC6BE"	14.5	"Human Modified"	3	3	"Carnivore"	"Invertivore"	"Aerial"	16377219.72	51.81
+"Hirundo rustica"	"Hirundinidae"	"Passeriformes"	7714	"AVIBASE-58C502EA"	17.9	"Human Modified"	3	3	"Carnivore"	"Invertivore"	"Aerial"	51701054.06	47.56
+"Riparia riparia"	"Hirundinidae"	"Passeriformes"	7733	"AVIBASE-94A1C447"	12.7	"Riverine"	3	3	"Carnivore"	"Invertivore"	"Aerial"	36583654.61	54.72
+"Lanius collurio"	"Laniidae"	"Passeriformes"	6891	"AVIBASE-F2CEFD1A"	28.4	"Woodland"	3	3	"Carnivore"	"Invertivore"	"Insessorial"	10799323.67	52.82
+"Locustella naevia"	"Locustellidae"	"Passeriformes"	7612	"AVIBASE-BC0E4C9F"	13.3	"Shrubland"	2	3	"Carnivore"	"Invertivore"	"Generalist"	7984518.2	52.97
+"Anthus pratensis"	"Motacillidae"	"Passeriformes"	9962	"AVIBASE-14873249"	18.4	"Grassland"	3	2	"Carnivore"	"Invertivore"	"Terrestrial"	6733599.47	59.47
+"Anthus trivialis"	"Motacillidae"	"Passeriformes"	9957	"AVIBASE-365F5E97"	23.3	"Woodland"	2	3	"Omnivore"	"Invertivore"	"Terrestrial"	15353264.33	56.07
+"Motacilla alba"	"Motacillidae"	"Passeriformes"	10016	"AVIBASE-400E032C"	23.9	"Human Modified"	3	3	"Carnivore"	"Invertivore"	"Terrestrial"	39488711.64	52.86
+"Motacilla flava"	"Motacillidae"	"Passeriformes"	10008	"AVIBASE-5983D677"	17.7	"Grassland"	3	3	"Carnivore"	"Invertivore"	"Terrestrial"	19198163.05	53.37
+"Erithacus rubecula"	"Muscicapidae"	"Passeriformes"	9153	"AVIBASE-C809B2B9"	17.7	"Forest"	1	3	"Carnivore"	"Omnivore"	"Generalist"	10001378.73	53.82
+"Ficedula hypoleuca"	"Muscicapidae"	"Passeriformes"	9266	"AVIBASE-66F7EC4B"	13.8	"Forest"	1	3	"Carnivore"	"Invertivore"	"Insessorial"	7339714.14	57.07
+"Luscinia luscinia"	"Muscicapidae"	"Passeriformes"	9215	"AVIBASE-6EC66752"	23.8	"Shrubland"	1	3	"Carnivore"	"Invertivore"	"Generalist"	6890175.16	55.79
+"Muscicapa striata"	"Muscicapidae"	"Passeriformes"	9064	"AVIBASE-EE8206E7"	15.9	"Forest"	1	3	"Carnivore"	"Invertivore"	"Insessorial"	16752202.89	50.39
+"Oenanthe oenanthe"	"Muscicapidae"	"Passeriformes"	9334	"AVIBASE-DF526047"	25.4	"Grassland"	3	3	"Carnivore"	"Invertivore"	"Insessorial"	29248291.46	56.46
+"Phoenicurus ochruros"	"Muscicapidae"	"Passeriformes"	9290	"AVIBASE-612B5C24"	16.5	"Rock"	3	2	"Omnivore"	"Invertivore"	"Insessorial"	13764225.49	42.46
+"Phoenicurus phoenicurus"	"Muscicapidae"	"Passeriformes"	9291	"AVIBASE-06DD9D95"	14.6	"Woodland"	1	3	"Carnivore"	"Invertivore"	"Insessorial"	14485113.51	53.91
+"Saxicola rubetra"	"Muscicapidae"	"Passeriformes"	9313	"AVIBASE-A0EDAEA2"	16.6	"Shrubland"	2	3	"Carnivore"	"Invertivore"	"Insessorial"	10238944.41	55.53
+"Saxicola rubicola"	"Muscicapidae"	"Passeriformes"	9319	"AVIBASE-F5463F0D"	14.1	"Shrubland"	3	2	"Carnivore"	"Invertivore"	"Insessorial"	32655980.34	42.7
+"Panurus biarmicus"	"Panuridae"	"Passeriformes"	7350	"AVIBASE-7D59F91D"	13.8	"Wetland"	3	2	"Omnivore"	"Invertivore"	"Insessorial"	11689099.28	44.98
+"Cyanistes caeruleus"	"Paridae"	"Passeriformes"	7222	"AVIBASE-9BE53D34"	11.1	"Forest"	1	1	"Omnivore"	"Invertivore"	"Insessorial"	8753389.8	50.72
+"Lophophanes cristatus"	"Paridae"	"Passeriformes"	7201	"AVIBASE-E5531933"	11	"Woodland"	1	1	"Omnivore"	"Invertivore"	"Insessorial"	5918314.94	54.5
+"Parus major"	"Paridae"	"Passeriformes"	7227	"AVIBASE-1FA19549"	16.3	"Woodland"	2	1	"Omnivore"	"Invertivore"	"Insessorial"	32577984.28	44.04
+"Periparus ater"	"Paridae"	"Passeriformes"	7192	"AVIBASE-166CD440"	9.2	"Forest"	1	1	"Omnivore"	"Invertivore"	"Insessorial"	18987457.58	52.81
+"Poecile montanus"	"Paridae"	"Passeriformes"	7213	"AVIBASE-F963401E"	11.1	"Forest"	1	1	"Omnivore"	"Invertivore"	"Insessorial"	21263364.59	56.04
+"Poecile palustris"	"Paridae"	"Passeriformes"	7211	"AVIBASE-523763E5"	11.1	"Forest"	1	1	"Omnivore"	"Invertivore"	"Insessorial"	9072135.09	49.29
+"Passer domesticus"	"Passeridae"	"Passeriformes"	9910	"AVIBASE-240E3390"	26.5	"Human Modified"	3	1	"Herbivore"	"Granivore"	"Terrestrial"	34407867.59	46.32
+"Passer montanus"	"Passeridae"	"Passeriformes"	9933	"AVIBASE-C22FBF8D"	21.4	"Woodland"	2	1	"Omnivore"	"Granivore"	"Terrestrial"	39069801.39	46.61
+"Phylloscopus collybita"	"Phylloscopidae"	"Passeriformes"	7941	"AVIBASE-458C8CBE"	8.3	"Forest"	1	3	"Carnivore"	"Invertivore"	"Insessorial"	7564956.38	53.49
+"Phylloscopus sibilatrix"	"Phylloscopidae"	"Passeriformes"	7925	"AVIBASE-572C4C7F"	9.2	"Forest"	1	3	"Carnivore"	"Invertivore"	"Insessorial"	6359810.96	54.15
+"Phylloscopus trochilus"	"Phylloscopidae"	"Passeriformes"	7939	"AVIBASE-88F4B969"	8.7	"Forest"	1	3	"Carnivore"	"Invertivore"	"Insessorial"	15839222.41	60.53
+"Prunella modularis"	"Prunellidae"	"Passeriformes"	9618	"AVIBASE-26530C86"	20.2	"Forest"	2	1	"Omnivore"	"Invertivore"	"Terrestrial"	6779516.3	56.25
+"Regulus ignicapilla"	"Regulidae"	"Passeriformes"	9368	"AVIBASE-85B03849"	5.6	"Forest"	1	3	"Carnivore"	"Invertivore"	"Insessorial"	2693877.52	46.92
+"Regulus regulus"	"Regulidae"	"Passeriformes"	9366	"AVIBASE-1C51C109"	5.5	"Forest"	1	3	"Carnivore"	"Invertivore"	"Insessorial"	13206760.36	51.77
+"Sitta europaea"	"Sittidae"	"Passeriformes"	8536	"AVIBASE-9C2B53A0"	20.4	"Forest"	1	1	"Carnivore"	"Invertivore"	"Insessorial"	21575986.15	52.64
+"Sturnus vulgaris"	"Sturnidae"	"Passeriformes"	8683	"AVIBASE-94A44032"	77.1	"Human Modified"	3	2	"Omnivore"	"Omnivore"	"Insessorial"	17082191.68	50.32
+"Sylvia atricapilla"	"Sylviidae"	"Passeriformes"	8053	"AVIBASE-61F9065B"	16.7	"Woodland"	1	3	"Omnivore"	"Omnivore"	"Insessorial"	8628077.66	51.6
+"Sylvia borin"	"Sylviidae"	"Passeriformes"	8054	"AVIBASE-A6A4FC63"	18.2	"Woodland"	1	3	"Omnivore"	"Omnivore"	"Insessorial"	9648408.47	54.65
+"Curruca communis"	"Sylviidae"	"Passeriformes"	8077	"AVIBASE-14AFBA82"	15.1	"Shrubland"	3	3	"Omnivore"	"Invertivore"	"Insessorial"	14124012.64	50.84
+"Curruca curruca"	"Sylviidae"	"Passeriformes"	8070	"AVIBASE-0DCD05BE"	11.4	"Shrubland"	3	3	"Omnivore"	"Invertivore"	"Insessorial"	21087199.91	51.94
+"Troglodytes troglodytes"	"Troglodytidae"	"Passeriformes"	8596	"AVIBASE-AF700208"	9.7	"Forest"	1	3	"Carnivore"	"Invertivore"	"Insessorial"	15761767.29	46.78
+"Turdus merula"	"Turdidae"	"Passeriformes"	8947	"AVIBASE-88BB4F2A"	102.7	"Forest"	2	1	"Omnivore"	"Omnivore"	"Generalist"	10572243.36	49.18
+"Turdus philomelos"	"Turdidae"	"Passeriformes"	8941	"AVIBASE-D929EB21"	67.7	"Forest"	1	3	"Omnivore"	"Invertivore"	"Generalist"	13727296.63	55.86
+"Turdus pilaris"	"Turdidae"	"Passeriformes"	9019	"AVIBASE-D120D5A0"	106	"Forest"	1	3	"Carnivore"	"Invertivore"	"Generalist"	15234795.02	58.85
+"Turdus viscivorus"	"Turdidae"	"Passeriformes"	8940	"AVIBASE-A95B43F1"	117.4	"Forest"	2	1	"Omnivore"	"Omnivore"	"Insessorial"	13574080.75	51.99
+"Ardea cinerea"	"Ardeidae"	"Pelecaniformes"	2233	"AVIBASE-6429024D"	1443	"Wetland"	3	1	"Carnivore"	"Aquatic predator"	"Terrestrial"	46421646.29	27.14
+"Dendrocopos major"	"Picidae"	"Piciformes"	4005	"AVIBASE-D754DB85"	74.9	"Woodland"	1	1	"Omnivore"	"Omnivore"	"Insessorial"	24413724.29	51.97
+"Picus viridis"	"Picidae"	"Piciformes"	3855	"AVIBASE-A01014FF"	176	"Forest"	2	1	"Carnivore"	"Invertivore"	"Terrestrial"	5981746.04	50.06
+"Podiceps cristatus"	"Podicipedidae"	"Podicipediformes"	562	"AVIBASE-8F269702"	731	"Wetland"	3	1	"Carnivore"	"Aquatic predator"	"Aquatic"	19812770.45	44.79
+"Podiceps grisegena"	"Podicipedidae"	"Podicipediformes"	561	"AVIBASE-1CBD2CED"	1023	"Wetland"	3	3	"Carnivore"	"Aquatic predator"	"Aquatic"	17383433.44	57.11
+"Tachybaptus ruficollis"	"Podicipedidae"	"Podicipediformes"	549	"AVIBASE-215FEA89"	169.4	"Wetland"	3	1	"Carnivore"	"Aquatic predator"	"Aquatic"	36639881.74	16.91
+"Asio otus"	"Strigidae"	"Strigiformes"	2871	"AVIBASE-FC4D40D2"	296.6	"Forest"	2	2	"Carnivore"	"Vertivore"	"Aerial"	27618929.92	50.73
+"Strix aluco"	"Strigidae"	"Strigiformes"	2910	"AVIBASE-612B4380"	472.5	"Forest"	1	1	"Carnivore"	"Vertivore"	"Insessorial"	9594068.11	49.39
+"Phalacrocorax carbo"	"Phalacrocoracidae"	"Suliformes"	2311	"AVIBASE-3DF5C587"	2529	"Wetland"	3	2	"Carnivore"	"Aquatic predator"	"Aquatic"	24540701.98	11.89
+"Corvus cornix"	"Corvidae"	"Passeriformes"	6987	"AVIBASE-E4EE9AC4"	570	"Human Modified"	3	1	"Carnivore"	"Omnivore"	"Terrestrial"	33343165.09	52.96
