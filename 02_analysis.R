@@ -9,200 +9,14 @@ library(cowplot)
 
 ### DOF data #####
 
-source('processing.R', echo=TRUE)
-
-### function ####
-
-fitModel <- function(myspecies, output="ESW"){
-
-#and just one species
-dataS <- data %>% 
-          filter(Species==myspecies) %>%
-          select(-id)
-
-#and use the right season for the species
-dataS <- dataS %>%
-          filter(type==bestSeason)
-
-#join data - all years
-allData <- left_join(info, dataS)
-
-#add on environmental data
-allData <- inner_join(allData, environData)
-
-#get number of birds seen at each distance
-distanceData <- allData %>% 
-            dplyr::select(Year, X.0,X.1,X.2) %>%
-            pivot_longer(starts_with("X."),names_to = "distance", values_to = "nu") %>%
-            dplyr::filter(!is.na(nu)) %>%
-            dplyr::mutate(distance = recode(distance, X.0 = "25", X.1 = "50", X.2 = "100")) %>%
-            dplyr::group_by(Year, distance) %>%
-            dplyr::summarise(total = sum(nu)) %>%
-            dplyr::mutate(distance = factor(distance, levels = c("25", "50", "100"))) %>%
-            ungroup() %>%
-            add_column(Species = myspecies)
-            
-#organise data for the distance model
-
-#was a quadrat number visited more than once? no
-#summaryQuad <- allData %>%
-#                    dplyr::group_by(kvadratnr) %>%
-#                    dplyr::summarise(nu = length(unique(dato)))#all only visited once
-#table(summaryQuad$nu)
-
-#get number of individuals detected per site
-# procData <- allData %>% 
-#                 dplyr::select(kvadratnr,X.0,X.1,X.2) %>%
-#                 pivot_longer(starts_with("X."),names_to="distance", values_to="nu") %>%
-#                 dplyr::mutate(distance = 
-#                                   recode(distance, X.0 = "25", X.1 = "50", X.2 = "100")) %>%
-#                 dplyr::mutate(nu = ifelse(is.na(nu),0,nu),
-#                               distance = as.numeric(as.character(distance)))
-    
-
-# #one per per detection
-# procDataR <- procData %>%
-#               filter(nu > 0) %>%
-#               group_by(kvadratnr) %>%
-#               slice(rep(1:n(), nu)) %>%
-#               dplyr::select(kvadratnr, distance) %>%
-#               ungroup()
-# table(procDataR$distance)
-
-### distance model ####
-
-# library(Distance)
-# ds_hn <- ds(procData, transect="line",key="hn")
-# ds_hr <- ds(procData, transect="line",key="hr")
-# ds_uni <- ds(procData, transect="line",key="unif")
-# 
-# plot(ds_hn)
-# gof_ds(ds_hn)
-# summarize_ds_models(ds_hn, ds_hr, ds_uni, output="plain")
-
-### format data for unmarked ####
-
-allData$line_pathroad
-covariates <- data.frame(scale(allData[,c("skydaekke","regn","vind","Year",
-                                          "lines_path","lines_road","lines_forest",
-                                          "squares_forest","squares_agri_int",
-                                          "squares_urban", "squares_agri_ext",
-                                          "squares_freshwater")]))
-covariates$fYear <- as.factor(allData$Year)
-
-#distance data
-temp <- allData[,c("X.0","X.1","X.2")]
-temp[is.na(temp)] <- 0
-colSums(temp)
-
-### unmarked ####
-
-#format data frame
-unmarkDF <- unmarkedFrameDS(y=as.matrix(temp),
-                            siteCovs= covariates,
-                            dist.breaks=c(0,25,50,100), 
-                            tlength=rep(1000,nrow(allData)),
-                            unitsIn="m", 
-                            survey="line")
-
-#with covariates
-#+ lines_forest
-(fm1 <- distsamp(~ lines_path +lines_road 
-                 ~ fYear + squares_forest + squares_agri_int + squares_urban + squares_agri_ext + squares_freshwater, 
-                 data = unmarkDF, 
-                 keyfun = "halfnorm",
-                 output = "density",
-                 unitsOut = "kmsq"))
-
-
-#decide on output
-if(output=="state"){
-  
-stateDF <- data.frame(Species = myspecies,
-                       param = names(coef(fm1,type='state')),
-                       coef = as.numeric(coef(fm1,type='state')),
-                       coef_se = as.numeric(SE(fm1,type='state')))[-1,]
-return(stateDF)
-
-}else if (output=="detection"){
-  
-detectionDF <- data.frame(Species = myspecies,
-                       param = names(coef(fm1,type='det')),
-                       coef = as.numeric(coef(fm1,type='det')),
-                       coef_se = as.numeric(SE(fm1,type='det')))[-1,]
-
-return(detectionDF)
-
-#use model to predict sigma
-}else if(output=="ESW"){
-
-log_sigma <- predict(fm1, type="det", newdata = data.frame(lines_path = min(covariates$lines_path),
-                                              lines_road = min(covariates$lines_road),
-                                              lines_forest = covariates$lines_forest))
-#get effective strip width
-log_sigma$ESW <- sapply(log_sigma$Predicted, function(x){
-  integrate(gxhn, 0, 101, sigma = x)$value
-})
-#head(log_sigma)#sigma is 38.2, ESW is 47 which makes sense
-#backTransform(fm1, type="det")  #same as what is in predict             
-#sqrt((pi * 38.51699^2)/2)
-
-#add on species
-log_sigma$Species <- myspecies
-return(log_sigma)
-
-}else if(output=="simple_ESW"){
-  
-  #null model
-  (fm0 <- distsamp(~ 1
-                   ~1, 
-                   data = unmarkDF, 
-                   keyfun = "halfnorm",
-                   output = "density",
-                   unitsOut = "kmsq"))
-  
-  log_sigma <- predict(fm0, type="det",
-                       newdata = data.frame(lines_path = min(covariates$lines_path),
-                                            lines_road = min(covariates$lines_road),
-                                            lines_forest = covariates$lines_forest))
-  
-  #get effective strip width
-  log_sigma$ESW <- sapply(log_sigma$Predicted, function(x){
-    integrate(gxhn, 0, 101, sigma = x)$value
-  })
-  #head(log_sigma)#sigma is 38.2, ESW is 47 which makes sense
-  #backTransform(fm1, type="det")  #same as what is in predict             
-  #sqrt((pi * 38.51699^2)/2)
-  
-  #add on species
-  log_sigma$Species <- myspecies
-  return(log_sigma[1,])
-  
-} else if(output=="density"){
-  
-  newdata <- covariates
-  newdata$lines_path <- min(newdata$lines_path)
-  newdata$lines_road <- min(newdata$lines_road)
-  
-  densityDF <- predict(fm1, type="state", newdata = newdata)
-  
-  #add on species
-  densityDF$Species <- myspecies
-  return(densityDF)
-
-} else if(output=="distanceData"){
-  
-  return(distanceData)
-  
-}
-
-}
-
+source('00_functions.R', echo=TRUE)
+source('01_processing.R', echo=TRUE)
 
 ### plot distance data ####
 
 distanceData <- lapply(species, function(x){
-  fitModel(x,output="distanceData")}) %>%
+  getDistanceData(x)
+  }) %>%
   reduce(rbind)
 
 ggplot(distanceData) + 
@@ -230,23 +44,35 @@ probs_set2 <- c("Ardea cinerea", "Circus aeruginosus", "Columba livia",
 select_species <- species[!species %in% probs_set1]
 select_species <- species[!select_species %in% probs_set2]
 
+### fit models ###
+
+myModels <- lapply(species, function(x){
+  fitModel(x)
+})
+
+saveRDS(myModels, file="outputs/models_passerines_fYear_linespathroad.rds")
+
+### extract ####
+
 ### ESWs #####
 
 #simple ESW
-simpleDF <- lapply(species, function(x){
-  fitModel(x,output="simple_ESW")}) %>%
+simpleDF <- lapply(myModels, function(x){
+  extractModel(x,"fm0",output="ESW")
+  }) %>%
   reduce(rbind)
 
 #predicted ESW including covariates
 covDF <-lapply(species, function(x){
-  fitModel(x,output="ESW")}) %>%
+  extractModel(x,"fm1",output="ESW")
+  }) %>%
   reduce(rbind)
   
 #combined and add on mean ESW
 outputDF <- covDF %>%
                 left_join(.,simpleDF, by="Species", suffix=c("_C","_N")) %>%
                 group_by(Species) %>%
-                mutate(meanESW = mean(ESW_C)) %>%
+                mutate(meanESW = median(ESW_C)) %>%
                 ungroup() %>%
                 mutate(Species = fct_reorder(factor(Species), meanESW))
 saveRDS(outputDF, file="outputs/outputDF_passerines.rds")
@@ -267,7 +93,7 @@ outputDF <- readRDS("outputs/outputDF_passerines.rds")
 traits <- readRDS("traits.rds")
 traitsDF <- outputDF %>%
               group_by(Species) %>%
-              summarise(ESW = median(ESW_C)) %>%
+              summarise(ESW = median(ESW_N)) %>%
               inner_join(., traits, by="Species") %>% 
               inner_join(.,flockSize, by="Species")
 
@@ -290,7 +116,7 @@ qplot(Primary.Lifestyle, ESW, data=traitsDF, geom="boxplot")
 
 #models
 lm1 <- lm(ESW ~ ForStrat.ground + ForStrat.aerial + log(BodyMass.Value) + 
-            Diet.5Cat + flockSize + Forest_sp,
+            Diet.5Cat + flockSize,
           data=traitsDF)
 
 lm1 <- lm(ESW ~ log(Mass) + Trophic.Level + Primary.Lifestyle + Habitat.Density,
