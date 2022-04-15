@@ -27,7 +27,8 @@ vignettes/*.pdf
 # R Environment Variables
 .Renviron
 old/*
-outputs/*
+outputs/*.rds
 gadm36_DNK_0_sp.rds
-environ-data/*
+gadm36_DEU_0_sp.rds
+environ-data/*.rds
 data/TTT/*
