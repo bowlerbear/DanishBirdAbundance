@@ -4,6 +4,7 @@ library(tidyverse)
 library(lubridate)
 library(ggthemes)
 library(cowplot)
+library(sf)
 
 ### DOF data #####
 
@@ -91,7 +92,7 @@ species <- speciesSeason$Species[speciesSeason$total<500 & speciesSeason$total>5
 length(species)
 
 #or passerines
-traits <- readRDS("traits.rds")
+traits <- readRDS("traits/traits.rds")
 species <- speciesSeason$Species[speciesSeason$total>50 & 
                                    speciesSeason$Species %in% traits$Species[traits$PassNonPass=="Passeriformes"]]
 
@@ -140,3 +141,18 @@ environData <- inner_join(lines[,c("kvadratnr","lines_path","lines_road","lines_
 #sound clues
 #foraging stratum
 
+### exact transect lengths ######
+
+# transects32 <- st_read(dsn = "data/TTT",
+#                      layer = "transects utm32")
+# 
+# transects33 <- st_read(dsn = "data/TTT",
+#                        layer = "transects utm32") %>%
+#                 st_transform(.,crs = st_crs(transects32))
+# all(transects32$kvadratnr==transects33$kvadratnr)
+# #they are the same...
+# 
+# #get exact lengths
+# transects33$length <- st_length(transects33)
+# summary(transects33$length)
+# #all pretty much 1km
