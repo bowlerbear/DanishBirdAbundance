@@ -1,3 +1,21 @@
+addCoords <- function(df){
+  
+  require(sf)
+  squares32 <- st_read(dsn = "data/TTT", layer = "transect squares utm32")
+  squares33 <- st_read(dsn = "data/TTT", layer = "transect squares utm33") %>%
+    st_transform(.,st_crs(squares32))
+  squares <- bind_rows(squares32, squares33) %>%
+    filter(kvadratnr %in% data$kvadratnr) %>%
+    filter(!duplicated(kvadratnr))
+  
+  coordsDF <- st_coordinates(st_centroid(squares)) %>%
+              as_tibble() %>%
+              add_column(kvadratnr = squares$kvadratnr)
+ 
+  df <- inner_join(df,coordsDF, by="kvadratnr")
+   return(df)
+}
+
 getDistanceData <- function(myspecies){
   
   #and just one species
@@ -12,7 +30,7 @@ getDistanceData <- function(myspecies){
     dplyr::filter(type==bestSeason)
   
   #join data - all years
-  allData <- left_join(info, dataS)
+  allData <- left_join(dataS,info)
   
   #add on environmental data
   allData <- inner_join(allData, environData)
@@ -45,20 +63,21 @@ fitModel <- function(myspecies){
     dplyr::filter(type==bestSeason)
   
   #join data - all years
-  allData <- left_join(info, dataS)
+  allData <- left_join(dataS,info)
   
   #add on environmental data
   allData <- inner_join(allData, environData)
   
   ### format data for unmarked ####
   
+  allData$lines_pathroad2 <- allData$lines_pathroad^2
   covariates <- data.frame(scale(allData[,c("skydaekke","regn","vind","Year",
                                             "lines_path","lines_road","lines_forest",
-                                            "lines_pathroad",
+                                            "lines_pathroad","lines_pathroad2",
                                             "squares_forest","squares_agri_int",
                                             "squares_urban", "squares_agri_ext",
                                             "squares_freshwater")]))
-  covariates$fYear <- as.factor(allData$Year)
+  #covariates$fYear <- factor(allData$Year)
   
   #distance data
   temp <- allData[,c("X.0","X.1","X.2")]
@@ -75,15 +94,6 @@ fitModel <- function(myspecies){
                               unitsIn="m", 
                               survey="line")
   
-  #with covariates
-  fm1 <- distsamp(~ fYear + lines_pathroad
-                  ~ fYear + squares_forest + squares_agri_int + squares_urban + 
-                    squares_agri_ext + squares_freshwater, 
-                  data = unmarkDF, 
-                  keyfun = "halfnorm",
-                  output = "density",
-                  unitsOut = "kmsq")
-  
   #null model
   fm0 <- distsamp(~ 1
                   ~1, 
@@ -92,26 +102,47 @@ fitModel <- function(myspecies){
                   output = "density",
                   unitsOut = "kmsq")
   
-  
-  #null state model
-  fm2 <- distsamp(~ fYear + lines_pathroad
-                  ~1, 
+  #with covariates
+  fm1 <- distsamp(~ lines_path + lines_road
+                  ~ squares_forest + squares_agri_int + squares_urban + 
+                    squares_agri_ext + squares_freshwater, 
                   data = unmarkDF, 
                   keyfun = "halfnorm",
                   output = "density",
                   unitsOut = "kmsq")
   
-  list(fm0 = fm0,
-       fm1 = fm1, 
-       fm2 = fm2)
+  #null state model
+  fm2 <- distsamp(~ lines_path + lines_road 
+                  ~ 1, 
+                  data = unmarkDF, 
+                  keyfun = "halfnorm",
+                  output = "density",
+                  unitsOut = "kmsq")
+  
+  
+  #null detection model
+  fm3 <- distsamp(~ 1
+                  ~ squares_forest + squares_agri_int + squares_urban + 
+                    squares_agri_ext + squares_freshwater, 
+                  data = unmarkDF, 
+                  keyfun = "halfnorm",
+                  output = "density",
+                  unitsOut = "kmsq")
+  
+  list(species = myspecies,
+        fm0 = fm0,
+        fm1 = fm1, 
+        fm2 = fm2,
+        fm3 = fm3)
   
 }
 
-extractModel <- function(myModels,modeltype, output="ESW"){
+extractModel <- function(myModels,modeltype, output="ESW", sep=TRUE){
+  
   
   #and just one species
   dataS <- data %>% 
-    filter(Species==myspecies) %>%
+    filter(Species == myModels[["species"]]) %>%
     select(-id)
   
   #and use the right season for the species
@@ -121,20 +152,21 @@ extractModel <- function(myModels,modeltype, output="ESW"){
     dplyr::filter(type==bestSeason)
   
   #join data - all years
-  allData <- left_join(info, dataS)
+  allData <- left_join(dataS,info)
   
   #add on environmental data
   allData <- inner_join(allData, environData)
   
-  ### format data ####
+  ### format data for unmarked ####
   
+  allData$lines_pathroad2 <- allData$lines_pathroad^2
   covariates <- data.frame(scale(allData[,c("skydaekke","regn","vind","Year",
                                             "lines_path","lines_road","lines_forest",
-                                            "lines_pathroad",
+                                            "lines_pathroad","lines_pathroad2",
                                             "squares_forest","squares_agri_int",
                                             "squares_urban", "squares_agri_ext",
                                             "squares_freshwater")]))
-  covariates$fYear <- as.factor(allData$Year)
+  #covariates$fYear <- as.factor(allData$Year)
   
   #distance data
   temp <- allData[,c("X.0","X.1","X.2")]
@@ -148,7 +180,7 @@ extractModel <- function(myModels,modeltype, output="ESW"){
   #decide on output
   if(output=="state"){
     
-    stateDF <- data.frame(Species = myspecies,
+    stateDF <- data.frame(Species = myModels[["species"]],
                           param = names(coef(model,type='state')),
                           coef = as.numeric(coef(model,type='state')),
                           coef_se = as.numeric(SE(model,type='state')))
@@ -156,7 +188,7 @@ extractModel <- function(myModels,modeltype, output="ESW"){
     
   }else if (output=="detection"){
     
-    detectionDF <- data.frame(Species = myspecies,
+    detectionDF <- data.frame(Species = myModels[["species"]],
                               param = names(coef(model,type='det')),
                               coef = as.numeric(coef(model,type='det')),
                               coef_se = as.numeric(SE(model,type='det')))
@@ -166,10 +198,13 @@ extractModel <- function(myModels,modeltype, output="ESW"){
     #use model to predict sigma
   }else if(output=="ESW"){
     
-    newData = expand_grid(fYear = sort(unique(allData$Year)),
-                          lines_pathroad = min(covariates$lines_pathroad)) %>%
-      mutate(fYear = as.factor(fYear)) %>%
-      as.data.frame()
+    #newData = data.frame(lines_pathroad = min(covariates$lines_pathroad))
+    if(sep==TRUE){
+    newData = data.frame(lines_path = min(covariates$lines_path),
+                          lines_road = min(covariates$lines_road))
+    }else{
+      newData = data.frame(lines_pathroad = min(covariates$lines_pathroad))
+    }
     
     log_sigma <- predict(model, type="det", newdata = newData)
     
@@ -182,16 +217,18 @@ extractModel <- function(myModels,modeltype, output="ESW"){
     #sqrt((pi * 38.51699^2)/2)
     
     #add on species
-    log_sigma$Species <- myspecies
+    log_sigma$Species <- myModels[["species"]]
     
     return(log_sigma)
     
   }else if(output=="density"){
     
     densityDF <- predict(model, type="state", newdata = covariates)
+    densityDF <- bind_cols(densityDF, covariates)
+    densityDF$kvadratnr <- allData$kvadratnr
     
     #add on species
-    densityDF$Species <- myspecies
+    densityDF$Species <- myModels[["species"]]
     return(densityDF)
     
   } 
