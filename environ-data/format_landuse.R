@@ -7,7 +7,7 @@ library(tidyverse)
 ### SQUARES ####
 
 #read in dof squares
-squares <- st_read(dsn = "data/Insects_and_TTT",
+squares <- st_read(dsn = "data/TTT",
                    layer = "transect squares utm32")
 plot(squares)
 
@@ -103,15 +103,14 @@ saveRDS(squares_buffer,file="environ-data/squares_buffer_5km.rds")
 ### TRANSECTS ####
 
 #read in dof squares
-lines <- st_read(dsn = "data/Insects_and_TTT",
+lines <- st_read(dsn = "data/TTT",
                    layer = "transects utm32")
 plot(lines)#lines
 
 #get land use data
-ldir <- "C:/Users/db40fysa/Dropbox/DOF/landuseData/basemap03_2018"
+ldir <- "/Users/dianabowler/Dropbox/DOF/landuseData/basemap03_2018"
 #aggregated layer with all classes
 r <- rast(paste(ldir,"lu_agg_2018.tif",sep="/"))
-r <- aggregate(r, fact=2,fun="modal")
 r[r==999999] <- NA
 #sort(unique(values(r)))#corresponds with table 3.6!!
 #table(values(r))
@@ -125,8 +124,12 @@ tm_shape(raster::raster(r))+
   tm_lines()
 #overlap fine
 
+plot(raster::raster(r))
+plot(as(lines,'Spatial'),add=TRUE)
+
 #small buffer on the lines
-lines_buffer <- st_buffer(squares,dist=5)
+lines_buffer <- st_buffer(lines, dist=5)
+lines_buffer <- st_buffer(lines, dist=100)
 
 #extract land use for the kvatradnr
 lines_buffer_landUse <- raster::extract(raster::raster(r),as_Spatial(lines_buffer), 
@@ -158,16 +161,5 @@ head(landuse_summary)
 lines <- bind_cols(lines_buffer,landuse_summary) %>%
           as_tibble()
 
-#plot to check
-tm_shape(lines)+
-  tm_lines("urban")          
-
-tm_shape(lines)+
-  tm_lines("agri_int")   
-
-tm_shape(lines)+
-  tm_lines("forest")  
-
-saveRDS(lines,file="environ-data/lines.rds")
 saveRDS(lines,file="environ-data/lines_5m.rds")
-saveRDS(lines,file="environ-data/lines_20m.rds")
+saveRDS(lines,file="environ-data/lines_100m.rds")
