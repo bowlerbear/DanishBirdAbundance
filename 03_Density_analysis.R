@@ -12,9 +12,16 @@ library(cowplot)
 source('00_functions.R', echo=TRUE)
 source('01_processing.R', echo=TRUE)
 
+#basic observed stats
+
+speciesSummary <- data %>%
+  filter(type==bestSeason) %>%
+  group_by(Species) %>%
+  summarise(obs_count = sum(total))
+
 ### choose models #####
 
-myModels <- readRDS("outputs/models_passerines_linespathroad.rds")
+myModels <- readRDS("outputs/models_passerines_lines_path_road.rds")
 
 ### ESWs #####
 
@@ -101,6 +108,12 @@ fitGAM <- function(myspecies, plot=FALSE){
   #add coordinates
   allData <- addCoords(allData)
 
+  #cap the maximum number observation at the 99% quantile
+  top99 <- as.numeric(round(quantile(allData$total,0.99)))
+  allData$total <- ifelse(allData$total > top99,
+                          top99, allData$total)
+  hist(allData$total)
+  
   #fit gam  
   library(brms)
   gam1 <- brm(bf(total ~ skydaekke + regn + vind + 
@@ -135,20 +148,68 @@ fitGAM <- function(myspecies, plot=FALSE){
   }
 
 #get predictions for each  species
-output1 <- species[1:10] %>%
+output1 <- species %>%
   map_dfr(.,fitGAM)
-saveRDS(output1,file="output1.rds")
+saveRDS(output,file="output.rds")
 
+#### upscaling ###
+output1 <- readRDS("output.rds")
 
-#### upscaling ####
+#add on fraction surveyed and ESW
+output1$surveyFraction <- nullDF$surveyFraction[match(output1$Species, nullDF$Species)]
+output1$ESW <- nullDF$ESW[match(output1$Species, nullDF$Species)]
 
+#predict total number per square
+output1$scaled_preds <- output1$preds/output1$surveyFraction
+output1$scaled_preds_lower <- (output1$preds - 2*output1$preds_sd)/output1$surveyFraction
+output1$scaled_preds_upper <- (output1$preds + 2*output1$preds_sd)/output1$surveyFraction
 
-#add on fraction surveyed
+#add on observed count
+output1 <- inner_join(output1,speciesSummary, by="Species")
 
+#total per species
+(outputSummary <- output1 %>%
+  group_by(Species) %>%
+  summarise(pred_count =sum(preds),
+            total_count = sum(scaled_preds),
+            total_count_lower = sum(scaled_preds_lower),
+            total_count_upper = sum(scaled_preds_upper),
+            obs_count = mean(obs_count),
+            ESW = mean(ESW),
+            surveyFraction = mean(surveyFraction)) %>%
+  arrange(desc(total_count))) 
+
+#remove outliders
+outputSummary <- outputSummary %>%
+                  filter(!Species %in% c("Turdus pilaris",
+                                         "Loxia curvirostra"))
+#plotting
+ggplot(outputSummary) + 
+  geom_text(aes(x=pred_count,y=total_count,label=Species))
+
+ggplot(outputSummary) + 
+  geom_text(aes(x=obs_count,y=total_count,label=Species),size=rel(2))
+
+outputSummary %>%
+  filter(obs_count<4000) %>%
+  ggplot() + 
+  geom_text(aes(x=obs_count,y=total_count,label=Species),size=rel(2))
+  
+ggplot(outputSummary)+
+  geom_col(aes(x = fct_reorder(Species, total_count), y = total_count, 
+               fill = ESW)) +
+  xlab("Species") + ylab("Estimated total population size") +
+  coord_flip() +
+  theme_bw()
+
+### uncertainty ##########
+
+#bootstrapping to estimate uncertainty?
+#delta method?
+#https://examples.distancesampling.org/Distance-variance/variance-distill.html
+#http://workshops.distancesampling.org/standrews-2019/intro/lectures/BlockD-precision-poststrat.pdf
+#Horvitz-Thompson-like estimator
 
 ### irregular squares ####
 
-
 #### upscaling ####
-
-
