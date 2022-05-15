@@ -212,6 +212,14 @@ extractModel <- function(myModels,modeltype, output="ESW", sep=TRUE){
     log_sigma$ESW <- sapply(log_sigma$Predicted, function(x){
       integrate(gxhn, 0, 101, sigma = x)$value
     }) 
+    
+    log_sigma$ESW_lower <- sapply(log_sigma$lower, function(x){
+      integrate(gxhn, 0, 101, sigma = x)$value
+    })
+    
+    log_sigma$ESW_upper <- sapply(log_sigma$upper, function(x){
+      integrate(gxhn, 0, 101, sigma = x)$value
+    })
     #head(log_sigma)#sigma is 38.2, ESW is 47 which makes sense
     #backTransform(fm1, type="det")  #same as what is in predict             
     #sqrt((pi * 38.51699^2)/2)
