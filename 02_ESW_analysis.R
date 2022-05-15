@@ -126,6 +126,7 @@ sepDF %>%
 
 ### traits ####
 
+source('00_functions.R', echo=TRUE)
 myModels <- readRDS("outputs/models_passerines_linespathroad.rds")
 
 simpleDF <- lapply(myModels, function(x){
