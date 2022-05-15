@@ -60,6 +60,7 @@ saveRDS(myModels, file="outputs/models_passerines_lines_path_road.rds")#sep term
 #fm0 = null, fm1 = cov, fm2 = null state, fm3 = null detection
 
 myModels <- readRDS("outputs/models_passerines_linespathroad.rds")
+myModels <- readRDS("outputs/models_passerines_lines_path_road.rds")
 
 ### ESWs #####
 
@@ -111,7 +112,7 @@ simpleDF %>%
     geom_point(aes(x = ESW.x, y = ESW.y)) +
     geom_abline()
 
-simpleDF %>%
+nullDF %>%
   inner_join(.,combDF, by="Species") %>%
   ggplot() +
   geom_point(aes(x = ESW.x, y = ESW.y)) +
@@ -185,5 +186,10 @@ detectionDF %>%
   facet_wrap(~param)+coord_flip()+theme_few()+
   geom_hline(yintercept=0,linetype="dashed") +
   ylab("Effect on ESW")
+
+### using ds package ####
+
+deer.df <- ds(sikadeer, key="hn", truncation="10%", convert_units = conversion.factor)
+plot(deer.df, main="Half normal detection function")
 
 ### end ####
