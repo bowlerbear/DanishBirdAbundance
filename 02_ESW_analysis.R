@@ -52,8 +52,12 @@ myModels <- lapply(species, function(x){
   fitModel(x)
 })
 
+#based in environmenta data in the 1 x 1 km square
 saveRDS(myModels, file="outputs/models_passerines_linespathroad.rds")#no year term
 saveRDS(myModels, file="outputs/models_passerines_lines_path_road.rds")#sep terms
+
+#based on environmental data in the 1 x 200 m transect area
+
 
 ### pick model ####
 
@@ -169,10 +173,8 @@ summary(lm(ESW ~ log(Mass) + ForStrat.ground + Habitat +
             data=traitsDF))
 
 
-#####################################
-#####################################
-####### SOME STUFF FROM COREY
-#####################################
+### jacknifing ####################################
+
 library(broom)
 library(tidyverse)
 
@@ -343,12 +345,9 @@ random_sampling_results %>%
 # Kinda cool... I think?
 
 
-
-#75%
-
 ### det covariates ####
 
-#detection covariates in the model
+#dextract coefficients for the etection covariates in the model
 detectionDF <-lapply(myModels, function(x){
   extractModel(x,"fm1",output="detection")
 }) %>%
